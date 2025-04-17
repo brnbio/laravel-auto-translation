@@ -1,8 +1,8 @@
 <?php
 
-namespace BrnBio\LaravelAutoTranslation\Tests;
+namespace Brainbo\LaravelAutoTranslation\Tests;
 
-use BrnBio\LaravelAutoTranslation\LaravelAutoTranslationServiceProvider;
+use Brainbo\LaravelAutoTranslation\LaravelAutoTranslationServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -23,7 +23,7 @@ class TestCase extends Orchestra
     {
         // Setup default database configuration for testing
         $app['config']->set('database.default', 'testing');
-        
+
         // Set configuration values for our package
         $app['config']->set('auto-translation.enabled', true);
         $app['config']->set('auto-translation.locales.source', 'en');

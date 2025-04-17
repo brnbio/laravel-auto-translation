@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -20,17 +22,14 @@ return [
     |
     */
     'service' => [
+
         'default' => env('AUTO_TRANSLATION_SERVICE', 'deepl'),
 
         'services' => [
-            'null' => [
-                // No configuration needed for null driver
-            ],
-
             'deepl' => [
-                'api_key' => env('DEEPL_API_KEY'),
-                'free_api' => env('DEEPL_FREE_API', true), // Set to true for DeepL API Free
-                'timeout' => env('DEEPL_TIMEOUT', 10), // Request timeout in seconds
+                'api_key'  => env('DEEPL_API_KEY'),
+                'free_api' => env('DEEPL_FREE_API', true),
+                'timeout'  => env('DEEPL_TIMEOUT', 10),
             ],
         ],
     ],
@@ -45,7 +44,7 @@ return [
     */
     'locales' => [
         'source' => env('AUTO_TRANSLATION_SOURCE_LOCALE', 'en'),
-        'target' => explode(',', env('AUTO_TRANSLATION_TARGET_LOCALES', 'de,fr,es')),
+        'target' => explode(',', env('AUTO_TRANSLATION_TARGET_LOCALES', '')),
     ],
 
     /*
@@ -56,15 +55,15 @@ return [
     | Configure directories and file extensions to scan for translations
     |
     */
-    'scan' => [
+    'scan'    => [
         'directories' => [
             'app',
             'resources/views',
             'resources/js/pages',
         ],
-        'extensions' => [
-            'php',
-            'vue'
+        'extensions'  => [
+            '.blade.php',
+            '.vue',
         ],
     ],
 ];

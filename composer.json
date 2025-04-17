@@ -4,28 +4,25 @@
     "type": "library",
     "license": "MIT",
     "version": "1.0.0",
+    "require": {
+        "php": "^8.2",
+        "deeplcom/deepl-php": "^1.11"
+    },
     "autoload": {
         "psr-4": {
-            "BrnBio\\LaravelAutoTranslation\\": "src/"
+            "Brainbo\\LaravelAutoTranslation\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BrnBio\\LaravelAutoTranslation\\Tests\\": "tests/"
+            "Brainbo\\LaravelAutoTranslation\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "BrnBio\\LaravelAutoTranslation\\LaravelAutoTranslationServiceProvider"
+                "Brainbo\\LaravelAutoTranslation\\LaravelAutoTranslationServiceProvider"
             ]
         }
-    },
-    "require": {
-        "php": "^8.2",
-        "guzzlehttp/guzzle": "^7.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.0|^10.0"
     }
 }

@@ -15,29 +15,6 @@ You can publish the config file with:
 php artisan vendor:publish --provider="BrnBio\LaravelAutoTranslation\LaravelAutoTranslationServiceProvider" --tag="config"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-    'enabled' => env('AUTO_TRANSLATION_ENABLED', true),
-    
-    'service' => [
-        'default' => env('AUTO_TRANSLATION_SERVICE', 'null'),
-        
-        'services' => [
-            'null' => [
-                // No configuration needed for null driver
-            ],
-        ],
-    ],
-    
-    'locales' => [
-        'source' => env('AUTO_TRANSLATION_SOURCE_LOCALE', 'en'),
-        'target' => explode(',', env('AUTO_TRANSLATION_TARGET_LOCALES', 'de,fr,es')),
-    ],
-];
-```
-
 ## Usage
 
 ### Scanning for translatable strings

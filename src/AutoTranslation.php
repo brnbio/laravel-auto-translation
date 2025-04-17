@@ -1,9 +1,9 @@
 <?php
 
-namespace BrnBio\LaravelAutoTranslation;
+namespace Brainbo\LaravelAutoTranslation;
 
-use BrnBio\LaravelAutoTranslation\Services\DeepLTranslator;
-use BrnBio\LaravelAutoTranslation\Services\TranslatorInterface;
+use Brainbo\LaravelAutoTranslation\Services\DeepLTranslator;
+use Brainbo\LaravelAutoTranslation\Services\TranslatorInterface;
 use Illuminate\Support\Facades\Log;
 
 class AutoTranslation
@@ -57,7 +57,7 @@ class AutoTranslation
         // Try to get the TranslatorInterface from the service container
         try {
             $this->translator = app(TranslatorInterface::class);
-            
+
             // Log successful initialization
             if ($this->translator) {
                 Log::debug('Translator service initialized:', [
@@ -88,21 +88,21 @@ class AutoTranslation
 
         $sourceLocale = $sourceLocale ?? $this->sourceLocale;
         $targetLocales = $targetLocales ?? $this->targetLocales;
-        
+
         $result = [$sourceLocale => $text];
-        
+
         foreach ($targetLocales as $targetLocale) {
             if ($targetLocale === $sourceLocale) {
                 continue;
             }
-            
+
             $translations = $this->translator->translateBatch([$text], $sourceLocale, $targetLocale);
-            
+
             if (!empty($translations)) {
                 $result[$targetLocale] = $translations[$text];
             }
         }
-        
+
         return $result;
     }
 
@@ -121,7 +121,7 @@ class AutoTranslation
         }
 
         $sourceLocale = $sourceLocale ?? $this->sourceLocale;
-        
+
         if ($targetLocale === $sourceLocale) {
             return array_combine($texts, $texts);
         }
@@ -132,9 +132,9 @@ class AutoTranslation
                 'first_texts' => array_slice($texts, 0, 3),
                 'translator_class' => get_class($this->translator)
             ]);
-            
+
             $translations = $this->translator->translateBatch($texts, $sourceLocale, $targetLocale);
-            
+
             // Log result
             \Log::debug("Received " . count($translations) . " translations", [
                 'sample' => !empty($translations) ? array_slice($translations, 0, 1, true) : []
@@ -145,14 +145,14 @@ class AutoTranslation
             ]);
             return array_combine($texts, $texts);
         }
-        
+
         // Fill in any missing translations with the original text
         foreach ($texts as $text) {
             if (!isset($translations[$text])) {
                 $translations[$text] = $text;
             }
         }
-        
+
         return $translations;
     }
 }
